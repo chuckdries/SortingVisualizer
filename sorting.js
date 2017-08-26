@@ -148,33 +148,6 @@ function mergeSort(data, states, color, originalData) {
     var sortedLeft = mergeSort(left, states, color, originalData);
     var sortedRight = mergeSort(right, states, color, originalData);
 
-    if (sortedLeft.length > 1) {
-        //Array.prototype.splice.apply(originalData, [leftIndex, sortedLeft.length].concat(sortedLeft));
-        var len = sortedLeft.length,
-            i = leftIndex;
-        for (var j = 0; j < sortedLeft.length; j++) {
-            originalData[i] = sortedLeft[j];
-            color[i] = "#FF0000";
-            states.push(new State(originalData.slice(), JSON.parse(JSON.stringify(color))));
-            color[i] = null;
-            states.push(new State(originalData.slice(), JSON.parse(JSON.stringify(color))));
-            i++;
-        }
-    }
-    if (sortedRight.length > 1) {
-        // Array.prototype.splice.apply(originalData, [rightIndex, sortedRight.length].concat(sortedRight));
-        var len = sortedRight.length,
-            i = rightIndex;
-        for (var j = 0; j < sortedRight.length; j++) {
-            originalData[i] = sortedRight[j];
-            color[i] = "#FF0000";
-            states.push(new State(originalData.slice(), JSON.parse(JSON.stringify(color))));
-            color[i] = null;
-            states.push(new State(originalData.slice(), JSON.parse(JSON.stringify(color))));
-            i++;
-        }
-    }
-
     var totalSorted = merge(sortedLeft, sortedRight);
     // Array.prototype.splice.apply(originalData, [leftIndex, totalSorted.length].concat(totalSorted));
     var len = totalSorted.length,
@@ -475,7 +448,7 @@ function combSort(array) {
 
 //http://taoalpha.github.io/blog/2016/01/19/tech-javascript-sorting-algorithm-radix-sort/
 // helper function to get the last nth digit of a number
-var getDigit = function(num, nth) {
+var getDigit = function (num, nth) {
     // get last nth digit of a number
     var ret = 0;
     while (nth--) {
